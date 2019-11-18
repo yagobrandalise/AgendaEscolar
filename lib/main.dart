@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';
+import 'acess_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,9 +10,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Agenda escolar',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.blue,
+        accentColor: Colors.amber,
+        errorColor: Colors.red,
+        textTheme: ThemeData.light().textTheme.copyWith(
+          title: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          button: TextStyle(
+            fontSize: 25,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
       ),
-      home: LoginScreen(),
+      home: AcessScreen(),
     );
   }
 }

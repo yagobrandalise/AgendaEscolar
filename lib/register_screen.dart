@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'agenda_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
+ final snackbar = SnackBar(content: Text('Cadastrado com sucesso!'));
+
+  void register(BuildContext ctx) {
+    // Scaffold.of(ctx).showSnackBar(snackbar);
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) => AgendaScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Agenda escolar',
+          'Cadastro',
         ),
       ),
       body: Column(
@@ -50,6 +62,10 @@ class RegisterScreen extends StatelessWidget {
             ),
             obscureText: true,
           ),
+          RaisedButton(
+            child: Text('Cadastrar'),
+            onPressed: () => register(context),
+          )
         ],
       ),
     );
