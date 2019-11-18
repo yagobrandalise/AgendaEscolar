@@ -23,25 +23,40 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Agenda escolar",
-        ),
+        backgroundColor: Colors.white,
+        actions: <Widget>[
+          RaisedButton(
+            child: Text('login'),
+            onPressed: () => login(context),
+          ),
+        ],
       ),
-      body: Center(
+      body: SingleChildScrollView(
         // child: Text("login page"),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            RaisedButton(
-              child: Text(
-                'Login',
-              ),
-              onPressed: () => login(context),
+            SizedBox(
+              height: 20,
             ),
-            RaisedButton(
-              child: Text(
-                'Register',
+            Container(
+              height: MediaQuery.of(context).size.height * 0.25,
+              child: Image.asset(
+                'assets/images/dyva_logo.png',
+                fit: BoxFit.fitHeight,
               ),
-              onPressed: () => register(context),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: RaisedButton(
+                child: Text(
+                  'Cadastrar',
+                ),
+                onPressed: () => register(context),
+              ),
             ),
           ],
         ),
