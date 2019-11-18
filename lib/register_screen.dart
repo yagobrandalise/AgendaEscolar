@@ -11,10 +11,44 @@ class RegisterScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Center(
-            child: Text(
-              'cadastro',
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'Nome',
             ),
+          ),
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'Idade',
+            ),
+            keyboardType: TextInputType.numberWithOptions(
+              decimal: false,
+            ),
+          ),
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'Cpf',
+            ),
+            keyboardType: TextInputType.numberWithOptions(
+              decimal: false,
+            ),
+          ),
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'Email',
+            ),
+            keyboardType: TextInputType.emailAddress,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'Senha',
+            ),
+            obscureText: true,
+          ),
+          TextField(
+            decoration: InputDecoration(
+              labelText: 'Confirmar senha',
+            ),
+            obscureText: true,
           ),
         ],
       ),
