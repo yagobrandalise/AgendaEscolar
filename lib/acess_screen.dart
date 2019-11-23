@@ -21,41 +21,48 @@ class AcessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final usefulHeigh = mediaQuery.size.height - mediaQuery.padding.top - mediaQuery.padding.bottom;
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        actions: <Widget>[
-          RaisedButton(
-            child: Text('login'),
-            onPressed: () => login(context),
-          ),
-        ],
-      ),
       body: SingleChildScrollView(
-        // child: Text("login page"),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             SizedBox(
-              height: 20,
+              height: mediaQuery.padding.top,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.25,
+              padding: EdgeInsets.all(usefulHeigh * 0.1),
+              height: usefulHeigh * 0.5,
               child: Image.asset(
                 'assets/images/dyva_logo.png',
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fitWidth,
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
             Container(
+              height: usefulHeigh * 0.5,
               alignment: Alignment.center,
-              child: RaisedButton(
-                child: Text(
-                  'Cadastrar',
-                ),
-                onPressed: () => register(context),
+              child: ButtonBar(
+                alignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  RaisedButton(
+                    child: const Text(
+                      'Login',
+                    ),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Theme.of(context).textTheme.button.color,
+                    onPressed: () => login(context),
+                  ),
+                  RaisedButton(
+                    child: Text(
+                      'Cadastrar',
+                    ),
+                    color: Theme.of(context).primaryColor,
+                    textColor: Theme.of(context).textTheme.button.color,
+                    onPressed: () => register(context),
+                  ),
+                ],
               ),
             ),
           ],
