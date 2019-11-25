@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'acess_screen.dart';
+import 'widgets/acess_screen.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations(
