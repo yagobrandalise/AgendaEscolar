@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'agenda_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void login(BuildContext ctx) {
+  void _login(BuildContext ctx) {
     if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
       return;
     }
@@ -39,6 +44,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
+                onSubmitted: (_) => _login(context),
               ),
               TextField(
                 decoration: InputDecoration(
@@ -47,6 +53,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 controller: _passwordController,
                 obscureText: true,
+                onSubmitted: (_) => _login(context),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -55,7 +62,7 @@ class LoginScreen extends StatelessWidget {
                     child: Text('Logar'),
                     color: Theme.of(context).primaryColor,
                     textColor: Theme.of(context).textTheme.button.color,
-                    onPressed: () => login(context),
+                    onPressed: () => _login(context),
                   ),
                 ],
               )
