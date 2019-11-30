@@ -15,7 +15,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordController2 = TextEditingController();
+
   DateTime _selectedDate;
+  String _userType = 'Estudante';
 
   void _register(BuildContext ctx) {
     if (_nameController.text.isEmpty ||
@@ -147,10 +149,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       obscureText: true,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
+                        DropdownButton<String>(
+                          value: _userType,
+                          elevation: 16,
+                          underline: Container(
+                            height: 2,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          items: <String>[
+                            'Estudante',
+                            'Professor(a)',
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                  color:
+                                      Theme.of(context).textTheme.title.color,
+                                  fontSize: Theme.of(context)
+                                      .textTheme
+                                      .title
+                                      .fontSize,
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          onChanged: (String newValue) {
+                            setState(() {
+                              _userType = newValue;
+                            });
+                          },
+                        ),
                         RaisedButton(
-                          child: Text('Cadastrar'),
+                          child: Text('Solicitar Cadastro'),
                           color: Theme.of(context).primaryColor,
                           textColor: Theme.of(context).textTheme.button.color,
                           onPressed: () => _register(context),
