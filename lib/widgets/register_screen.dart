@@ -1,3 +1,4 @@
+import 'package:appagendaescolar/widgets/acess_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     Navigator.of(ctx).push(
       MaterialPageRoute(
-        builder: (_) => AgendaScreen(),
+        builder: (_) => AcessScreen(),
       ),
     );
   }

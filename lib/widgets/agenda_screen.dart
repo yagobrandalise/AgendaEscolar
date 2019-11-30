@@ -1,6 +1,8 @@
+import 'package:appagendaescolar/models/teacher.dart';
 import 'package:flutter/material.dart';
 import '../models/task.dart';
 import '../widgets/task_list.dart';
+import '../widgets/user_page.dart';
 
 class AgendaScreen extends StatefulWidget {
   @override
@@ -64,11 +66,14 @@ class _AgendaScreenState extends State<AgendaScreen> {
   ];
 
   final _widgetsOptions = <Widget>[
-    Center(
-      child: Text(
-        'Conta do usuário',
-      ),
-    ),
+    UserPage(new Teacher(
+        name: "Douglas",
+        birthday: DateTime.now(),
+        cpf: "1111",
+        email: "email@ucs.com",
+        id: "@dasda",
+        password: "666",
+        subjectsIds: <String>["1"])),
     TaskList(_userTasks),
     Center(
       child: Text(
