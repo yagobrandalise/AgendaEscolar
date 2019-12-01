@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/task.dart';
+import '../models/user.dart';
+import 'task_screen.dart';
 
-class TaskList extends StatelessWidget {
+class TaskListPage extends StatelessWidget {
   final List<Task> tasks;
+  final User user;
 
-  TaskList(this.tasks);
+  TaskListPage(this.tasks, this.user);
+
+  void _openTask(BuildContext ctx, Task selectedTask) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) => TaskScreen(selectedTask, user),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +56,7 @@ class TaskList extends StatelessWidget {
                   horizontal: 5,
                 ),
                 child: ListTile(
+                  onTap: () => _openTask(context, tasks[index]),
                   leading: CircleAvatar(
                     radius: 30,
                     child: Padding(

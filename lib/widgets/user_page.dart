@@ -21,16 +21,16 @@ class UserPage extends StatelessWidget {
     return LayoutBuilder(
       builder: (ctx, constraints) {
         return Container(
-          color: Colors.cyan,
-          padding: const EdgeInsets.all(30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 100),
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Column(
                 children: <Widget>[
                   Container(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Icon(
                           Icons.person,
@@ -41,6 +41,8 @@ class UserPage extends StatelessWidget {
                           style: TextStyle(
                             fontSize:
                                 Theme.of(context).textTheme.title.fontSize,
+                            fontWeight:
+                                Theme.of(context).textTheme.title.fontWeight,
                           ),
                         ),
                       ],
@@ -53,7 +55,13 @@ class UserPage extends StatelessWidget {
                 ],
               ),
               Container(
-                child: Text(user.name),
+                child: Text(
+                  user.name,
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.title.fontSize,
+                    fontWeight: Theme.of(context).textTheme.title.fontWeight,
+                  ),
+                ),
               ),
               Container(
                 child: RaisedButton(
@@ -62,9 +70,6 @@ class UserPage extends StatelessWidget {
                   textColor: Theme.of(context).textTheme.button.color,
                   onPressed: () => _exit(context),
                 ),
-              ),
-              SizedBox(
-                height: 20,
               ),
             ],
           ),

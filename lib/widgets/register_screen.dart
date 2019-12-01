@@ -84,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         labelText: 'Nome',
                       ),
                       controller: _nameController,
-                      onSubmitted: (_) => _register(context),
+                      onSubmitted: (_) => {},
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -97,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             keyboardType: TextInputType.datetime,
                             controller: _birthdayController,
-                            onSubmitted: (_) => _register(context),
+                            onSubmitted: (_) => {},
                             enabled: false,
                           ),
                         ),
@@ -117,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         labelText: 'Cpf',
                       ),
                       controller: _cpfController,
-                      onSubmitted: (_) => _register(context),
+                      onSubmitted: (_) => {},
                       keyboardType: TextInputType.numberWithOptions(
                         decimal: false,
                       ),
@@ -128,7 +128,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         labelText: 'Email',
                       ),
                       controller: _emailController,
-                      onSubmitted: (_) => _register(context),
+                      onSubmitted: (_) => {},
                       keyboardType: TextInputType.emailAddress,
                     ),
                     TextField(
@@ -137,7 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         labelText: 'Senha',
                       ),
                       controller: _passwordController,
-                      onSubmitted: (_) => _register(context),
+                      onSubmitted: (_) => {},
                       obscureText: true,
                     ),
                     TextField(
@@ -146,7 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         labelText: 'Confirmar senha',
                       ),
                       controller: _passwordController2,
-                      onSubmitted: (_) => _register(context),
+                      onSubmitted: (_) => {},
                       obscureText: true,
                     ),
                     Row(

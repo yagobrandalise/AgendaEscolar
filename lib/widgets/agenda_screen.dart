@@ -1,8 +1,10 @@
-import 'package:appagendaescolar/models/teacher.dart';
 import 'package:flutter/material.dart';
 import '../models/task.dart';
-import '../widgets/task_list.dart';
+import '../widgets/task_list_page.dart';
 import '../widgets/user_page.dart';
+import '../widgets/new_task_screen.dart';
+import '../models/teacher.dart';
+import '../models/user.dart';
 
 class AgendaScreen extends StatefulWidget {
   @override
@@ -65,16 +67,21 @@ class _AgendaScreenState extends State<AgendaScreen> {
     ),
   ];
 
+  static User user = new Teacher(
+      name: "Douglas",
+      birthday: DateTime.now(),
+      cpf: "1111",
+      email: "email@ucs.com",
+      id: "@dasda",
+      password: "666",
+      subjectsIds: <String>["1"]);
+
   final _widgetsOptions = <Widget>[
-    UserPage(new Teacher(
-        name: "Douglas",
-        birthday: DateTime.now(),
-        cpf: "1111",
-        email: "email@ucs.com",
-        id: "@dasda",
-        password: "666",
-        subjectsIds: <String>["1"])),
-    TaskList(_userTasks),
+    UserPage(user),
+    TaskListPage(
+      _userTasks,
+      user,
+    ),
     Center(
       child: Text(
         'Máterias',
@@ -86,6 +93,14 @@ class _AgendaScreenState extends State<AgendaScreen> {
     setState(() {
       _selectedNavigationIndex = index;
     });
+  }
+
+  void _createNewTask(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) => NewTaskScreen(user),
+      ),
+    );
   }
 
   @override
@@ -116,6 +131,15 @@ class _AgendaScreenState extends State<AgendaScreen> {
           child: _widgetsOptions[_selectedNavigationIndex],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: user is Teacher
+          ? FloatingActionButton(
+              child: Icon(
+                Icons.add,
+              ),
+              onPressed: () => _createNewTask(context),
+            )
+          : null,
     );
   }
 }
