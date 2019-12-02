@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
+import '../models/database.dart';
 
 class AcessScreen extends StatelessWidget {
+  final Database _database;
+
+  AcessScreen(this._database);
+
   void login(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
-        builder: (_) => LoginScreen(),
+        builder: (_) => LoginScreen(_database),
       ),
     );
   }
@@ -14,7 +19,7 @@ class AcessScreen extends StatelessWidget {
   void register(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
-        builder: (_) => RegisterScreen(),
+        builder: (_) => RegisterScreen(_database),
       ),
     );
   }
@@ -22,7 +27,9 @@ class AcessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final usefulHeigh = mediaQuery.size.height - mediaQuery.padding.top - mediaQuery.padding.bottom;
+    final usefulHeigh = mediaQuery.size.height -
+        mediaQuery.padding.top -
+        mediaQuery.padding.bottom;
 
     return Scaffold(
       body: SingleChildScrollView(

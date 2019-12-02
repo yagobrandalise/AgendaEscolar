@@ -1,3 +1,4 @@
+import 'package:appagendaescolar/models/database.dart';
 import 'package:flutter/material.dart';
 import '../models/task.dart';
 import '../widgets/task_list_page.dart';
@@ -8,11 +9,34 @@ import '../models/student.dart';
 import '../models/user.dart';
 
 class AgendaScreen extends StatefulWidget {
+  final User user;
+  final Database database;
+
+  AgendaScreen(this.user, this.database);
+
   @override
-  _AgendaScreenState createState() => _AgendaScreenState();
+  _AgendaScreenState createState() =>
+      _AgendaScreenState(this.user, this.database);
 }
 
 class _AgendaScreenState extends State<AgendaScreen> {
+  final User user;
+  final Database database;
+  final _widgetsOptions = <Widget>[];
+
+  _AgendaScreenState(this.user, this.database) {
+    _widgetsOptions.add(UserPage(user, database));
+    _widgetsOptions.add(TaskListPage(
+      _userTasks,
+      user,
+    ));
+    _widgetsOptions.add(Center(
+      child: Text(
+        'Máterias',
+      ),
+    ));
+  }
+
   int _selectedNavigationIndex = 1;
   static List<Task> _userTasks = [
     Task(
@@ -65,29 +89,6 @@ class _AgendaScreenState extends State<AgendaScreen> {
         Duration(days: 2),
       ),
       subjectId: "FES",
-    ),
-  ];
-
-  static User user = new Student(
-      name: "Douglas",
-      birthday: DateTime.now(),
-      cpf: "1111",
-      email: "email@ucs.com",
-      id: "@dasda",
-      password: "666",
-      subjectsIds: <String>["1"],
-      registration: "ooo");
-
-  final _widgetsOptions = <Widget>[
-    UserPage(user),
-    TaskListPage(
-      _userTasks,
-      user,
-    ),
-    Center(
-      child: Text(
-        'Máterias',
-      ),
     ),
   ];
 

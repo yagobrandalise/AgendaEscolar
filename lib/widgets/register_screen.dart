@@ -1,15 +1,28 @@
+import 'dart:math';
+
 import 'package:appagendaescolar/widgets/acess_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
-import 'agenda_screen.dart';
+import '../models/database.dart';
+import '../models/student.dart';
+import '../models/teacher.dart';
+import '../models/user.dart';
 
 class RegisterScreen extends StatefulWidget {
+  final Database _database;
+
+  RegisterScreen(this._database);
+
   @override
-  _RegisterScreenState createState() => _RegisterScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState(this._database);
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final Database _database;
+
+  _RegisterScreenState(this._database);
+
   final _nameController = TextEditingController();
   final _birthdayController = TextEditingController();
   final _cpfController = TextEditingController();
@@ -34,9 +47,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
       return;
     }
 
+    User newUser = _userType == "Estudante"
+        ? Student(
+            name: _nameController.text,
+            cpf: _cpfController.text,
+            email: _emailController.text,
+            birthday: _selectedDate,
+            password: _passwordController.text,
+            subjectsIds: ["1", "2"],
+            id: new Random().nextInt(10000).toString(),
+            registration: new Random().nextInt(10000).toString())
+        : Teacher(
+            name: _nameController.text,
+            cpf: _cpfController.text,
+            email: _emailController.text,
+            birthday: _selectedDate,
+            password: _passwordController.text,
+            subjectsIds: ["1", "2"],
+            id: new Random().nextInt(100000000000).toString(),
+          );
+
+    if (!_database.AddNewUser(newUser)) return;
+
     Navigator.of(ctx).push(
       MaterialPageRoute(
-        builder: (_) => AcessScreen(),
+        builder: (_) => AcessScreen(_database),
       ),
     );
   }

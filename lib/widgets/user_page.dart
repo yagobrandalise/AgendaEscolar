@@ -1,3 +1,4 @@
+import 'package:appagendaescolar/models/database.dart';
 import 'package:flutter/material.dart';
 import '../models/user.dart';
 import '../models/teacher.dart';
@@ -5,13 +6,14 @@ import '../widgets/acess_screen.dart';
 
 class UserPage extends StatelessWidget {
   final User user;
+  final Database database;
 
-  UserPage(this.user);
+  UserPage(this.user, this.database);
 
   void _exit(BuildContext ctx) {
     Navigator.of(ctx).push(
       MaterialPageRoute(
-        builder: (_) => AcessScreen(),
+        builder: (_) => AcessScreen(this.database),
       ),
     );
   }

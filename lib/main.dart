@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'widgets/acess_screen.dart';
+import 'models/database.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations(
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
           )),
-      home: AcessScreen(),
+      home: AcessScreen(Database()),
     );
   }
 }

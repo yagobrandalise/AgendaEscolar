@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'agenda_screen.dart';
+import '../models/database.dart';
+import '../models/user.dart';
 
 class LoginScreen extends StatefulWidget {
+  final Database _database;
+
+  LoginScreen(this._database);
+
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _LoginScreenState createState() => _LoginScreenState(this._database);
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final Database _database;
+
+  _LoginScreenState(this._database);
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -15,11 +25,15 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (_) => AgendaScreen(),
-      ),
-    );
+    User user =
+        _database.SelectUser(_emailController.text, _passwordController.text);
+
+    if (user != null)
+      Navigator.of(ctx).push(
+        MaterialPageRoute(
+          builder: (_) => AgendaScreen(user, this._database),
+        ),
+      );
   }
 
   @override
