@@ -4,6 +4,7 @@ import '../widgets/task_list_page.dart';
 import '../widgets/user_page.dart';
 import '../widgets/new_task_screen.dart';
 import '../models/teacher.dart';
+import '../models/student.dart';
 import '../models/user.dart';
 
 class AgendaScreen extends StatefulWidget {
@@ -67,14 +68,15 @@ class _AgendaScreenState extends State<AgendaScreen> {
     ),
   ];
 
-  static User user = new Teacher(
+  static User user = new Student(
       name: "Douglas",
       birthday: DateTime.now(),
       cpf: "1111",
       email: "email@ucs.com",
       id: "@dasda",
       password: "666",
-      subjectsIds: <String>["1"]);
+      subjectsIds: <String>["1"],
+      registration: "ooo");
 
   final _widgetsOptions = <Widget>[
     UserPage(user),
@@ -132,7 +134,7 @@ class _AgendaScreenState extends State<AgendaScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      floatingActionButton: user is Teacher
+      floatingActionButton: user is Teacher && _selectedNavigationIndex == 1
           ? FloatingActionButton(
               child: Icon(
                 Icons.add,

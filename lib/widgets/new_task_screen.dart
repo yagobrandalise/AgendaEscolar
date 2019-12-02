@@ -1,8 +1,7 @@
-import 'package:appagendaescolar/models/teacher.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../models/task.dart';
 import '../models/user.dart';
+import '../models/teacher.dart';
 
 class NewTaskScreen extends StatefulWidget {
   final User user;
@@ -171,6 +170,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                               ),
                               maxLines: null,
                               expands: true,
+                              textAlignVertical: TextAlignVertical.top,
                               keyboardType: TextInputType.multiline,
                               enabled: user is Teacher,
                             ),
