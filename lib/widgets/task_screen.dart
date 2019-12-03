@@ -1,4 +1,6 @@
 import 'package:appagendaescolar/models/student.dart';
+import 'package:appagendaescolar/models/student_task.dart';
+import 'package:appagendaescolar/widgets/task_evaluator_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/task.dart';
@@ -27,6 +29,39 @@ class _TaskScreenState extends State<TaskScreen> {
   final _dueTimeController = TextEditingController();
   final _descriptionController = TextEditingController();
   final _subjectController = TextEditingController();
+
+  void _evaluateTasks(BuildContext ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        builder: (_) => TaskEvaluatorScreen([
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+          StudentTask(
+            content: "Sprint 1 - Cadastro, Banco de Dados, Interface, Documentação, Conta GitHub, Criar Repositório",
+          ),
+        ]),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +211,7 @@ class _TaskScreenState extends State<TaskScreen> {
                       'Avaliar tarefas',
                     ),
                     icon: Icon(Icons.wb_sunny),
-                    onPressed: () => {},
+                    onPressed: () => _evaluateTasks(context),
                   ));
       },
     );
